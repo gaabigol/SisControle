@@ -4,24 +4,52 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import com.SisControle.model.enums.Sexo;
+
+@Entity
+@Table(name = "clientes")
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(nullable = false, length = 30)
 	private String nome;
+	@Column(length = 11)
 	private String cpf;
+	@DateTimeFormat(iso = ISO.DATE)
+	@Column(name = "data_nascimento", columnDefinition = "DATE")
 	private LocalDate dataNascimento;
+	@Column(length = 15)
 	private String telefone;
+	@Column(length = 15)
 	private String celular;
+	@Column(length = 50)
 	private String email;
 	private boolean ativo;
+
+	@Enumerated(EnumType.STRING)
+	private Sexo sexo;
 
 	public Cliente() {
 		this.ativo = true;
 	}
 
 	public Cliente(Long id, String nome, String cpf, LocalDate dataNascimento, String telefone, String celular,
-			String email, boolean ativo) {
+			String email, boolean ativo, Sexo sexo) {
 		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
@@ -30,6 +58,8 @@ public class Cliente implements Serializable {
 		this.celular = celular;
 		this.email = email;
 		this.ativo = ativo;
+		this.sexo = sexo;
+
 	}
 
 	public Long getId() {
@@ -96,6 +126,10 @@ public class Cliente implements Serializable {
 		this.ativo = ativo;
 	}
 
+	public Sexo getSexo() {
+		return sexo;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(cpf, id);
@@ -112,7 +146,5 @@ public class Cliente implements Serializable {
 		Cliente other = (Cliente) obj;
 		return Objects.equals(cpf, other.cpf) && Objects.equals(id, other.id);
 	}
-	
-	
 
 }
