@@ -130,6 +130,10 @@ public class Cliente implements Serializable {
 		return sexo;
 	}
 
+	public void setSexo(Sexo sexo) {
+		this.sexo = sexo;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(cpf, id);

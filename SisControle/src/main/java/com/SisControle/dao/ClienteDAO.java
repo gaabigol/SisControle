@@ -25,7 +25,7 @@ public class ClienteDAO implements CRUD<Cliente, Long> {
 
 	@Override
 	public List<Cliente> findAll() {
-		TypedQuery<Cliente> query = entityManager.createQuery("SELECT c FROM Clientes c", Cliente.class);
+		TypedQuery<Cliente> query = entityManager.createQuery("SELECT c FROM Cliente c", Cliente.class);
 		List<Cliente> clientes = query.getResultList();
 		return clientes;
 	}
@@ -37,7 +37,9 @@ public class ClienteDAO implements CRUD<Cliente, Long> {
 
 	@Override
 	public void remove(Cliente cliente) {
-		entityManager.remove(cliente);
+		if (entityManager.contains(cliente)) {
+			entityManager.remove(cliente);
+		}
 	}
 
 	@Override
