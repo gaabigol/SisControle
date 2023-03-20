@@ -130,6 +130,23 @@ public class Cliente implements Serializable {
 		return sexo;
 	}
 
+	@Override
+	public String toString() {
+		String cliente = "";
+		cliente += "CLIENTE\n";
+		cliente += "-------------------------\n";
+		cliente += "ID.......: " + this.id + "\n";
+		cliente += "Nome.....: " + this.nome + "\n";
+		cliente += "CPF......: " + this.cpf + "\n";
+		cliente += "Data Nasc: " + this.dataNascimento + "\n";
+		cliente += "Sexo.....: " + (this.sexo == null ? "null" : this.sexo.getDescricao()) + "\n";
+		cliente += "Telefone.: " + this.telefone + "\n";
+		cliente += "Celular..: " + this.celular + "\n";
+		cliente += "Email....: " + this.email + "\n";
+		cliente += "Ativo....: " + (this.ativo ? "Sim" : "Não") + "\n";
+		return cliente;
+	}
+
 	public void setSexo(Sexo sexo) {
 		this.sexo = sexo;
 	}

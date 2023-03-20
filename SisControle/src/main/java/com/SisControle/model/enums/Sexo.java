@@ -2,8 +2,7 @@ package com.SisControle.model.enums;
 
 public enum Sexo {
 
-	MASCULINO("Masculino"), 
-	FEMININO("feminino");
+	MASCULINO("Masculino"), FEMININO("feminino");
 
 	private String destricao;
 
@@ -11,7 +10,7 @@ public enum Sexo {
 		this.destricao = descricao;
 	}
 
-	public String getSexo() {
+	public String getDescricao() {
 		return destricao;
 	}
 }
