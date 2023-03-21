@@ -66,20 +66,6 @@ public class Cliente implements Serializable {
 		this.ativo = true;
 	}
 
-	public Cliente(Long id, String nome, String cpf, LocalDate dataNascimento, String telefone, String celular,
-			String email, boolean ativo, Sexo sexo) {
-		this.id = id;
-		this.nome = nome;
-		this.cpf = cpf;
-		this.dataNascimento = dataNascimento;
-		this.telefone = telefone;
-		this.celular = celular;
-		this.email = email;
-		this.ativo = ativo;
-		this.sexo = sexo;
-
-	}
-
 	public Long getId() {
 		return id;
 	}
