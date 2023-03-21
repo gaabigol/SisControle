@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -24,14 +21,14 @@ public class ClienteController {
 	ClienteBO clienteBO;
 
 	// controller OKAY
-	@RequestMapping(value = "/novo", method = RequestMethod.GET)
+	@GetMapping("/novo")
 	public ModelAndView novo(ModelMap model) {
 		model.addAttribute("cliente", new Cliente());
 		return new ModelAndView("/cliente/formulario", model);
 	}
 
 	// Controller OKAY
-	@RequestMapping(value = "", method = RequestMethod.POST)
+	@PostMapping("")
 	public String salva(@Valid @ModelAttribute Cliente cliente, BindingResult result, RedirectAttributes attr) {
 		if (result.hasErrors()) {
 			System.out.println(result);
@@ -48,14 +45,14 @@ public class ClienteController {
 	}
 
 	// Controller OKAY
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@GetMapping("")
 	public ModelAndView lista(ModelMap model) {
 		model.addAttribute("clientes", clienteBO.findAll());
 		return new ModelAndView("/cliente/lista", model);
 	}
 
 	// Controller OKAY
-	@RequestMapping(value = "/edita/{id}", method = RequestMethod.GET)
+	@GetMapping("/edita/{id}")
 	public ModelAndView edita(@PathVariable("id") Long id, ModelMap model) {
 		try {
 			model.addAttribute("cliente", clienteBO.findById(id));
@@ -66,7 +63,7 @@ public class ClienteController {
 	}
 
 	// Controller OKAY
-	@RequestMapping(value = "/inativa/{id}", method = RequestMethod.GET)
+	@GetMapping("/inativa/{id}")
 	public String inativa(@PathVariable("id") Long id, RedirectAttributes attr) {
 		try {
 			Cliente cliente = clienteBO.findById(id);
@@ -79,7 +76,7 @@ public class ClienteController {
 	}
 
 	// Controller OKAY
-	@RequestMapping(value = "/ativa/{id}", method = RequestMethod.GET)
+	@GetMapping("/ativa/{id}")
 	public String ativa(@PathVariable("id") Long id, RedirectAttributes attr) {
 		try {
 			Cliente cliente = clienteBO.findById(id);
