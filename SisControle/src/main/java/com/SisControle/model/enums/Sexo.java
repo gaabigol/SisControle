@@ -2,7 +2,8 @@ package com.SisControle.model.enums;
 
 public enum Sexo {
 
-	MASCULINO("Masculino"), FEMININO("feminino");
+	MASCULINO("Masculino"),
+	FEMININO("Feminino");
 
 	private String destricao;
 

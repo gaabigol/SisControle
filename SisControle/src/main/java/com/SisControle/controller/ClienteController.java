@@ -20,14 +20,14 @@ public class ClienteController {
 	@Autowired
 	ClienteBO clienteBO;
 
-	// controller OKAY
+
 	@GetMapping("/novo")
 	public ModelAndView novo(ModelMap model) {
 		model.addAttribute("cliente", new Cliente());
 		return new ModelAndView("/cliente/formulario", model);
 	}
 
-	// Controller OKAY
+	
 	@PostMapping("")
 	public String salva(@Valid @ModelAttribute Cliente cliente, BindingResult result, RedirectAttributes attr) {
 		if (result.hasErrors()) {
@@ -44,25 +44,25 @@ public class ClienteController {
 		return "redirect:/clientes";
 	}
 
-	// Controller OKAY
+	
 	@GetMapping("")
 	public ModelAndView lista(ModelMap model) {
 		model.addAttribute("clientes", clienteBO.findAll());
 		return new ModelAndView("/cliente/lista", model);
 	}
 
-	// Controller OKAY
+	
 	@GetMapping("/edita/{id}")
 	public ModelAndView edita(@PathVariable("id") Long id, ModelMap model) {
 		try {
 			model.addAttribute("cliente", clienteBO.findById(id));
 		} catch (Exception error) {
-			error.getStackTrace();
+			error.printStackTrace();
 		}
 		return new ModelAndView("/cliente/formulario", model);
 	}
 
-	// Controller OKAY
+	
 	@GetMapping("/inativa/{id}")
 	public String inativa(@PathVariable("id") Long id, RedirectAttributes attr) {
 		try {
@@ -70,12 +70,12 @@ public class ClienteController {
 			clienteBO.inactivate(cliente);
 			attr.addFlashAttribute("feedback", "Cliente inativado com sucesso");
 		} catch (Exception error) {
-			error.getStackTrace();
+			error.printStackTrace();
 		}
 		return "redirect:/clientes";
 	}
 
-	// Controller OKAY
+	
 	@GetMapping("/ativa/{id}")
 	public String ativa(@PathVariable("id") Long id, RedirectAttributes attr) {
 		try {
@@ -83,7 +83,7 @@ public class ClienteController {
 			clienteBO.activate(cliente);
 			attr.addFlashAttribute("feedback", "Cliente ativado com sucesso");
 		} catch (Exception error) {
-			error.getStackTrace();
+			error.printStackTrace();
 		}
 		return "redirect:/clientes";
 	}
