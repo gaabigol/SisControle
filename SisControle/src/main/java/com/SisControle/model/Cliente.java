@@ -38,7 +38,7 @@ public class Cliente implements Serializable {
 	@Size(min = 3, max = 50, message = "Digite um nome válido")
 	private String nome;
 	
-	
+	@Column(length = 14)
 	@CPF(message = "CPF inválido")
 	private String cpf;
 	

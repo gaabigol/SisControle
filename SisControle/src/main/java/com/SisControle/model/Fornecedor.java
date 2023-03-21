@@ -3,8 +3,17 @@ package com.SisControle.model;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.br.CNPJ;
 
 @Entity
 @Table(name = "fornecedores")
@@ -12,12 +21,29 @@ public class Fornecedor implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@Column(nullable = false, length = 50)
+	@NotBlank(message = "Por favor, informe o nome do fornecedor")
+	@Size(min = 3, max = 50)
 	private String razaoSocial;
+	
+	@Column(length = 19)
+	@CNPJ(message = "CNPJ inválido")
 	private String cnpj;
+	
+	@Column(length = 15)
 	private String telefone;
+	
+	@Column(length = 15)
 	private String celular;
+	
+	@Column(length = 50)
+	@Email(message = "E-mail inválido")
 	private String email;
+	
 	private boolean ativo;
 
 	public Fornecedor() {
