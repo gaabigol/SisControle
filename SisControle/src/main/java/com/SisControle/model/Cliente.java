@@ -33,6 +33,8 @@ public class Cliente implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	//adicionar atributo nome
+	
 	@Column(nullable = false, length = 50)
 	@NotBlank(message = "Por favor, informe seu nome")
 	@Size(min = 3, max = 50, message = "Digite um nome válido")

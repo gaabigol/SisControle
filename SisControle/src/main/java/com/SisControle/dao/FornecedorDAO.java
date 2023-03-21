@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -25,9 +25,9 @@ public class FornecedorDAO implements CRUD<Fornecedor, Long> {
 
 	@Override
 	public List<Fornecedor> findAll() {
-		TypedQuery<Fornecedor> query = entityManager.createNamedQuery("SELECT f FROM Fornecedor f", Fornecedor.class);
-		List<Fornecedor> fornecedores = query.getResultList();
-		return fornecedores;
+		Query query = entityManager.createQuery("SELECT f FROM Fornecedor f", Fornecedor.class);
+		return (List<Fornecedor>) query.getResultList();
+
 	}
 
 	@Override
