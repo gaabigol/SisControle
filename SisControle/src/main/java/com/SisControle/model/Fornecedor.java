@@ -26,24 +26,29 @@ public class Fornecedor implements Serializable {
 	private Long id;
 
 	@Column(nullable = false, length = 50)
-	@NotBlank(message = "Por favor, informe o nome do fornecedor")
+	@NotBlank(message = "Por favor, informe a razão social")
 	@Size(min = 3, max = 50)
 	private String razaoSocial;
-	
+
+	@Column(nullable = false, length = 50)
+	@NotBlank(message = "Por favor, informe seu nome")
+	@Size(min = 3, max = 50, message = "Digite um nome válido")
+	private String nomeFantasia;
+
 	@Column(length = 19)
 	@CNPJ(message = "CNPJ inválido")
 	private String cnpj;
-	
+
 	@Column(length = 15)
 	private String telefone;
-	
+
 	@Column(length = 15)
 	private String celular;
-	
+
 	@Column(length = 50)
 	@Email(message = "E-mail inválido")
 	private String email;
-	
+
 	private boolean ativo;
 
 	public Fornecedor() {
@@ -76,6 +81,14 @@ public class Fornecedor implements Serializable {
 
 	public String getTelefone() {
 		return telefone;
+	}
+
+	public String getNomeFantasia() {
+		return nomeFantasia;
+	}
+
+	public void setNomeFantasia(String nomeFantasia) {
+		this.nomeFantasia = nomeFantasia;
 	}
 
 	public void setTelefone(String telefone) {
@@ -113,6 +126,8 @@ public class Fornecedor implements Serializable {
 		builder.append(id);
 		builder.append(", razaoSocial=");
 		builder.append(razaoSocial);
+		builder.append(", nomeFantasia=");
+		builder.append(nomeFantasia);
 		builder.append(", cnpj=");
 		builder.append(cnpj);
 		builder.append(", telefone=");

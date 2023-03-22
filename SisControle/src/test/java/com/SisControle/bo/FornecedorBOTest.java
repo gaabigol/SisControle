@@ -27,6 +27,7 @@ public class FornecedorBOTest {
 		fornecedor.setEmail("gabigol_96@icloud.com");
 		fornecedor.setTelefone("12345687");
 		fornecedor.setRazaoSocial("comercio");
+		fornecedor.setNomeFantasia("barbearia legal");
 		bo.insert(fornecedor);
 	}
 
