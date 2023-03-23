@@ -34,7 +34,7 @@ public class Produto implements Serializable {
 
 	@NotNull(message = "Informe a categoria do produto")
 	@Enumerated(EnumType.STRING)
-	private Categoria categoria;
+	private Categoria categorias;
 
 	public Produto() {
 		this.ativo = true;
@@ -65,11 +65,11 @@ public class Produto implements Serializable {
 	}
 
 	public Categoria getCategoria() {
-		return categoria;
+		return categorias;
 	}
 
 	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
+		this.categorias = categoria;
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public class Produto implements Serializable {
 		builder.append(", ativo=");
 		builder.append(ativo);
 		builder.append(", categoria=");
-		builder.append(categoria);
+		builder.append(categorias);
 		builder.append("]");
 		return builder.toString();
 	}
