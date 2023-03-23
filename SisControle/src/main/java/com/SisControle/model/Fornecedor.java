@@ -27,7 +27,7 @@ public class Fornecedor implements Serializable {
 
 	@Column(nullable = false, length = 50)
 	@NotBlank(message = "Por favor, informe a razão social")
-	@Size(min = 3, max = 50)
+	@Size(min = 3, max = 50, message = "Por favor, digite um nome válido")
 	private String razaoSocial;
 
 	@Column(nullable = false, length = 50)

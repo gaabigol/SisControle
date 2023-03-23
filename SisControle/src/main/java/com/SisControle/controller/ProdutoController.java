@@ -35,10 +35,11 @@ public class ProdutoController {
 	}
 
 	@PostMapping("")
-	public String salva(@Valid @ModelAttribute Produto produto, BindingResult result, RedirectAttributes attr) {
+	public String salva(@Valid @ModelAttribute Produto produto, BindingResult result, RedirectAttributes attr,
+			ModelMap model) {
 		if (result.hasErrors()) {
-			System.out.println(result);
-			return "/cliente/formulario";
+			model.addAttribute("categorias", Arrays.asList(Categoria.values()));
+			return "/produto/formulario";
 		}
 		if (produto.getId() == null) {
 			produtoBO.insert(produto);
@@ -52,7 +53,7 @@ public class ProdutoController {
 
 	@GetMapping("")
 	public ModelAndView lista(ModelMap model) {
-		model.addAttribute("produto", produtoBO.findAll());
+		model.addAttribute("produtos", produtoBO.findAll());
 		return new ModelAndView("/produto/lista", model);
 	}
 

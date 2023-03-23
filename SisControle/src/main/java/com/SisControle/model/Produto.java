@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.SisControle.model.enums.Categoria;
 
@@ -26,15 +27,15 @@ public class Produto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotBlank(message = "Informe o nome do produto")
 	@Column(nullable = false, length = 50)
+	@NotBlank(message = "Informe o nome do produto")
 	private String nome;
 
 	private boolean ativo;
 
 	@NotNull(message = "Informe a categoria do produto")
 	@Enumerated(EnumType.STRING)
-	private Categoria categorias;
+	private Categoria categoria;
 
 	public Produto() {
 		this.ativo = true;
@@ -65,11 +66,11 @@ public class Produto implements Serializable {
 	}
 
 	public Categoria getCategoria() {
-		return categorias;
+		return categoria;
 	}
 
 	public void setCategoria(Categoria categoria) {
-		this.categorias = categoria;
+		this.categoria = categoria;
 	}
 
 	@Override
@@ -82,7 +83,7 @@ public class Produto implements Serializable {
 		builder.append(", ativo=");
 		builder.append(ativo);
 		builder.append(", categoria=");
-		builder.append(categorias);
+		builder.append(categoria);
 		builder.append("]");
 		return builder.toString();
 	}
