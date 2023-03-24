@@ -1,6 +1,8 @@
 package com.SisControle.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,10 +12,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import com.SisControle.model.enums.Categoria;
 
@@ -36,6 +38,7 @@ public class Produto implements Serializable {
 	@NotNull(message = "Informe a categoria do produto")
 	@Enumerated(EnumType.STRING)
 	private Categoria categoria;
+
 
 	public Produto() {
 		this.ativo = true;
