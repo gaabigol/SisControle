@@ -1,5 +1,7 @@
 package com.SisControle.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -33,8 +35,8 @@ public class NotaEntradaController {
 	}
 
 	@PostMapping
-	public String salva(@ModelAttribute NotaEntrada notaEntrada, BindingResult result, RedirectAttributes attr,
-			ModelMap model) {
+	public String salva(@Valid @ModelAttribute NotaEntrada notaEntrada, BindingResult result, RedirectAttributes attr) {
+		
 		if (result.hasErrors()) {
 			return "/nota-entrada/formulario";
 		}
