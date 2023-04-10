@@ -25,7 +25,7 @@ public class NotaEntradaDAO implements CRUD<NotaEntrada, Long> {
 
 	@Override
 	public List<NotaEntrada> findAll() {
-		TypedQuery<NotaEntrada> query = entityManager.createNamedQuery("SELECT ne FROM NOTAENTRADA ne",NotaEntrada.class);
+		TypedQuery<NotaEntrada> query = entityManager.createQuery("SELECT ne FROM NotaEntrada ne", NotaEntrada.class);
 		List<NotaEntrada> notas = query.getResultList();
 		return notas;
 	}

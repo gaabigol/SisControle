@@ -1,6 +1,6 @@
 package com.SisControle.bo;
 
-import java.time.LocalDateTime;
+
 import java.util.List;
 
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
@@ -24,7 +24,6 @@ public class NotaEntradaBOTest {
 	@Order(1)
 	public void insert() {
 		NotaEntrada nota = new NotaEntrada();
-		nota.setDataHora(LocalDateTime.now());
 		nota.setFornecedor(new Fornecedor());
 		nota.setTotal(20.45);
 		bo.insert(nota);

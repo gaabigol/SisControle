@@ -34,9 +34,9 @@ public class NotaEntradaController {
 		return new ModelAndView("/nota-entrada/formulario", model);
 	}
 
-	@PostMapping
-	public String salva(@Valid @ModelAttribute NotaEntrada notaEntrada, BindingResult result, RedirectAttributes attr) {
-		
+	@PostMapping("")
+	public String salva(@Valid @ModelAttribute NotaEntrada notaEntrada, BindingResult result, RedirectAttributes attr, ModelMap model) {
+
 		if (result.hasErrors()) {
 			return "/nota-entrada/formulario";
 		}
@@ -48,6 +48,12 @@ public class NotaEntradaController {
 			attr.addFlashAttribute("feedback", "Os dados da nota foram atualizados com sucesso");
 		}
 		return "redirect:/nota-entrada";
+	}
+
+	@GetMapping("/lista")
+	public ModelAndView lista(ModelMap model) {
+		model.addAttribute("notas", notaEntradaBO.findAll());
+		return new ModelAndView("/nota-entrada/lista", model);
 	}
 
 }
