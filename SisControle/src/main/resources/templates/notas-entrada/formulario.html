@@ -18,7 +18,7 @@
 			<h1>Nota de Entrada</h1>
 			<hr>
 			<div>
-				<form th:action="@{/nota-entrada}" method="POST">
+				<form th:action="@{/notas-entrada}" method="POST">
 					<input id="id" type="hidden" th:field="*{notaEntrada.id}"/>
 					<div th:if="${!#strings.isEmpty(feedback)}" class="alert alert-success" role="alert">
 	  					<span th:text="${feedback}"></span>
@@ -44,7 +44,7 @@
 						</div>
 					</div>
 					<div th:if="${notaEntrada.id != null}" class="mb-3">
-						<a class="btn btn-sm btn-success" th:href="@{/nota-entrada/{id}/item(id=${notaEntrada.id})}">Adicionar produto</a>
+						<a class="btn btn-sm btn-success" th:href="@{/notas-entrada/{id}/item(id=${notaEntrada.id})}">Adicionar produto</a>
 						<table class="table table-hover">
 						    <thead>
 						        <tr>
@@ -63,10 +63,10 @@
 						            <td th:text="${#numbers.formatDecimal(item.valorUnitario, 0, 'POINT', 2, 'COMMA')}"></td>
 						            <td th:text="${#numbers.formatDecimal(item.valorTotal, 0, 'POINT', 2, 'COMMA')}"></td>
 						            <td>
-						            	<a class="btn btn-sm btn-secondary" th:href="@{/nota-entrada-item/edita/{id}(id=${item.id})}">Editar</a>
+						            	<a class="btn btn-sm btn-secondary" th:href="@{/notas-entrada-item/edita/{id}(id=${item.id})}">Editar</a>
 						            </td>
 						            <td>
-						            	<a class="btn btn-sm btn-secondary" th:href="@{/nota-entrada-item/remove/{id}(id=${item.id})}">Remover</a>
+						            	<a class="btn btn-sm btn-secondary" th:href="@{/notas-entrada-item/remove/{id}(id=${item.id})}">Remover</a>
 						            </td>
 						       </tr>
 						     </tbody>
@@ -96,8 +96,6 @@
 	</script>
 </body>
 </html>
-
-
 
 
 

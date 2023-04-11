@@ -18,7 +18,7 @@
 			<h1>Notas de entrada</h1>
 			<hr>
 			<div>
-				<a class="btn btn-primary" th:href="@{/nota-entrada/novo}">Novo</a>
+				<a class="btn btn-primary" th:href="@{/notas-entrada/novo}">Novo</a>
 			</div>
 			<hr>
 			<div th:if="${!#strings.isEmpty(feedback)}" class="alert alert-success" role="alert">
@@ -40,10 +40,10 @@
 			            <td th:text="${#temporals.format(nota.dataHora, 'dd/MM/yyyy HH:mm')}"></td>
 			            <td th:text="${#numbers.formatDecimal(nota.total, 0, 'POINT', 2, 'COMMA')}"></td>
 			            <td>
-			            	<a class="btn btn-sm btn-secondary" th:href="@{/nota-entrada/edita/{id}(id=${nota.id})}">Editar</a>
+			            	<a class="btn btn-sm btn-secondary" th:href="@{/notas-entrada/edita/{id}(id=${nota.id})}">Editar</a>
 			            </td>
 			            <td>
-			            	<a class="btn btn-sm btn-secondary" th:href="@{/nota-entrada/remove/{id}(id=${nota.id})}">Remover</a>
+			            	<a class="btn btn-sm btn-secondary" th:href="@{/notas-entrada/remove/{id}(id=${nota.id})}">Remover</a>
 			            </td>
 			       </tr>
 			     </tbody>
