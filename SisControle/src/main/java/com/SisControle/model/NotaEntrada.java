@@ -2,15 +2,19 @@ package com.SisControle.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
@@ -34,11 +38,14 @@ public class NotaEntrada implements Serializable {
 	private LocalDateTime dataHora;
 
 	@Transient
-	private Double total;
+	private Float total;
 
 	@ManyToOne
 	@JoinColumn(name = "fornecedor_id", nullable = false)
 	private Fornecedor fornecedor;
+
+	@OneToMany(mappedBy = "notaEntrada", fetch = FetchType.LAZY)
+	private List<NotaEntradaItem> itens;
 
 	public Long getId() {
 		return id;
@@ -56,20 +63,28 @@ public class NotaEntrada implements Serializable {
 		this.dataHora = dataHora;
 	}
 
-	public Double getTotal() {
+	public Float getTotal() {
 		return total;
 	}
 
-	public void setTotal(double total) {
+	public void setTotal(Float total) {
 		this.total = total;
+	}
+
+	public Fornecedor getFornecedor() {
+		return fornecedor;
 	}
 
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
 	}
 
-	public Fornecedor getFornecedor() {
-		return fornecedor;
+	public List<NotaEntradaItem> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<NotaEntradaItem> itens) {
+		this.itens = itens;
 	}
 
 	@Override

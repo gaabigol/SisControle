@@ -57,7 +57,7 @@
 						        </tr>
 						    </thead>
 						    <tbody>
-						        <tr th:each="item : ${notaEntrada.itens}">
+						        <tr th:each="item : ${itens}">
 						          <td th:text="${item.produto.nome}"></td>
 						            <td th:text="${item.quantidade}"></td>
 						            <td th:text="${#numbers.formatDecimal(item.valorUnitario, 0, 'POINT', 2, 'COMMA')}"></td>
@@ -96,6 +96,7 @@
 	</script>
 </body>
 </html>
+
 
 
 

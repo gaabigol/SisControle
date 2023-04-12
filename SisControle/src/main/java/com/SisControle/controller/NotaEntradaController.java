@@ -44,16 +44,22 @@ public class NotaEntradaController {
 	public String salva(@Valid @ModelAttribute NotaEntrada notaEntrada, BindingResult result, RedirectAttributes attr,
 			ModelMap model) {
 
+		if (notaEntrada.getFornecedor().getId() == null)
+			result.rejectValue("fornecedor", "field.required");
+
 		if (result.hasErrors()) {
+			model.addAttribute("fornecedores", fornecedorBO.findAll());
 			return "/notas-entrada/formulario";
 		}
+
 		if (notaEntrada.getId() == null) {
 			notaEntradaBO.insert(notaEntrada);
-			attr.addFlashAttribute("feedback", "Nota de entrada salva com sucesso");
+			attr.addFlashAttribute("feedback", "A nota de entrada foi cadastrada com sucesso");
 		} else {
 			notaEntradaBO.update(notaEntrada);
-			attr.addFlashAttribute("feedback", "Os dados da nota foram atualizados com sucesso");
+			attr.addFlashAttribute("feedback", "Os dados da nota de entrada foram atualizados com sucesso");
 		}
+
 		return "redirect:/notas-entrada";
 	}
 
@@ -70,7 +76,7 @@ public class NotaEntradaController {
 		nei.setNotaEntrada(ne);
 		model.addAttribute("notaEntradaItem", nei);
 		model.addAttribute("produtos", produtoBO.findAll());
-		return new ModelAndView("/notas-entrada-item/formulario", model);
+		return new ModelAndView("/notas-items/formulario", model);
 	}
 
 	@GetMapping("/edita/{id}")
