@@ -30,18 +30,22 @@ public class NotaEntradaItemDAO implements CRUD<NotaEntradaItem, Long> {
 	}
 
 	@Override
-	public void insert(NotaEntradaItem NotaEntradaItem) {
-		entityManager.persist(NotaEntradaItem);
+	public void insert(NotaEntradaItem notaEntradaItem) {
+		entityManager.persist(notaEntradaItem);
 	}
 
 	@Override
-	public void remove(NotaEntradaItem NotaEntradaItem) {
-		entityManager.remove(NotaEntradaItem);
-	}
-
+	public void remove(NotaEntradaItem notaEntradaItem) {
+		if(entityManager.contains(notaEntradaItem)) {
+			entityManager.remove(notaEntradaItem);
+			}
+		}
+		
 	@Override
-	public void update(NotaEntradaItem NotaEntradaItem) {
-		entityManager.merge(NotaEntradaItem);
+	public void update(NotaEntradaItem notaEntradaItem) {
+		if (entityManager.contains(notaEntradaItem)) {
+			entityManager.merge(notaEntradaItem);
+		}
 	}
 
 	public List<NotaEntradaItem> listaItensNota(Long notaEntradaId) {

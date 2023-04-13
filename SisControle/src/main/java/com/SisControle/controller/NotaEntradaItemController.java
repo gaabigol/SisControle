@@ -41,8 +41,9 @@ public class NotaEntradaItemController {
 		if (produtoId == null)
 			result.rejectValue("produto", "field.required");
 
-		  /*if (notaEntradaItemBO.itemJaAdicionado(notaEntradaItem)) {
-		  result.rejectValue("produto", "duplicate"); }
+		/*
+		 * if (notaEntradaItemBO.itemJaAdicionado(notaEntradaItem)) {
+		 * result.rejectValue("produto", "duplicate"); }
 		 */
 
 		if (result.hasErrors()) {
@@ -72,9 +73,11 @@ public class NotaEntradaItemController {
 		return new ModelAndView("/nota-entrada-item/formulario", model);
 	}
 
+	// Resolver conflito entre as entidades no caso de deletar um item da nota por
+	// este controller
 	@GetMapping("/remove/{id}")
 	public String remove(@PathVariable("id") Long id, RedirectAttributes attr) {
-		Long notaId = null;
+		Long notaId = 0L;
 		NotaEntradaItem notaEntradaItem = notaEntradaItemBO.findById(id);
 		notaId = notaEntradaItem.getNotaEntrada().getId();
 		notaEntradaItemBO.remove(notaEntradaItem);

@@ -14,8 +14,7 @@ public class NotaEntradaItemBO implements CRUD<NotaEntradaItem, Long> {
 
 	@Autowired
 	private NotaEntradaItemDAO dao;
-	
-	
+
 	@Override
 	public NotaEntradaItem findById(Long id) {
 		return dao.findById(id);
@@ -40,6 +39,27 @@ public class NotaEntradaItemBO implements CRUD<NotaEntradaItem, Long> {
 	public void update(NotaEntradaItem item) {
 		dao.update(item);
 	}
-	
 
+	public boolean itemJaAdicionado(NotaEntradaItem itemNotaEntrada) {
+
+		Long NotaEntradaId = itemNotaEntrada.getNotaEntrada().getId();
+		List<NotaEntradaItem> items = dao.listaItensNota(NotaEntradaId);
+		Long produtoId = itemNotaEntrada.getProduto().getId();
+
+		if (itemNotaEntrada.getId() == null) {
+			for (NotaEntradaItem item : items) {
+				if (item.getProduto().getId() == produtoId) {
+					return true;
+				}
+			}
+		} else {
+			Long notaEntradaItem = itemNotaEntrada.getId();
+			for (NotaEntradaItem item : items) {
+				if (itemNotaEntrada.getProduto().getId() == produtoId && notaEntradaItem != item.getId()) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 }

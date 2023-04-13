@@ -37,12 +37,18 @@ public class NotaEntradaDAO implements CRUD<NotaEntrada, Long> {
 
 	@Override
 	public void remove(NotaEntrada notaEntrada) {
-		entityManager.remove(notaEntrada);
+		if (entityManager.contains(notaEntrada)) {
+			entityManager.remove(notaEntrada);
+		}
 	}
+
 
 	@Override
 	public void update(NotaEntrada notaEntrada) {
-		entityManager.merge(notaEntrada);
+		if (entityManager.contains(notaEntrada)) {
+			entityManager.merge(notaEntrada);
+		}
+
 	}
 
 }
