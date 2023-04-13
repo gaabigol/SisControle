@@ -44,7 +44,7 @@ public class NotaEntrada implements Serializable {
 	@JoinColumn(name = "fornecedor_id", nullable = false)
 	private Fornecedor fornecedor;
 
-	@OneToMany(mappedBy = "notaEntrada", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "notaEntrada", cascade = CascadeType.ALL)
 	private List<NotaEntradaItem> itens;
 
 	public Long getId() {
@@ -64,6 +64,12 @@ public class NotaEntrada implements Serializable {
 	}
 
 	public Float getTotal() {
+		this.total = 0f;
+		if(this.itens != null) {
+			for (NotaEntradaItem notaEntradaItem : itens) {
+				total += notaEntradaItem.getValorTotal();
+			}
+		}
 		return total;
 	}
 
