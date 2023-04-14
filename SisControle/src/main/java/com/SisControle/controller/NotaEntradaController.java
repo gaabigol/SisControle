@@ -6,11 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -37,7 +33,7 @@ public class NotaEntradaController {
 	public ModelAndView novo(ModelMap model) {
 		model.addAttribute("notaEntrada", new NotaEntrada());
 		model.addAttribute("fornecedores", fornecedorBO.findAll());
-		return new ModelAndView("/notas-entrada/formulario", model);
+		return new ModelAndView("/nota-entrada/formulario", model);
 	}
 
 	@PostMapping("")
@@ -49,7 +45,7 @@ public class NotaEntradaController {
 
 		if (result.hasErrors()) {
 			model.addAttribute("fornecedores", fornecedorBO.findAll());
-			return "/notas-entrada/formulario";
+			return "/nota-entrada/formulario";
 		}
 
 		if (notaEntrada.getId() == null) {
@@ -66,7 +62,7 @@ public class NotaEntradaController {
 	@GetMapping("")
 	public ModelAndView lista(ModelMap model) {
 		model.addAttribute("notas", notaEntradaBO.findAll());
-		return new ModelAndView("/notas-entrada/lista", model);
+		return new ModelAndView("/nota-entrada/lista", model);
 	}
 
 	@GetMapping("/{id}/item")
@@ -76,7 +72,7 @@ public class NotaEntradaController {
 		nei.setNotaEntrada(ne);
 		model.addAttribute("notaEntradaItem", nei);
 		model.addAttribute("produtos", produtoBO.findAll());
-		return new ModelAndView("/notas-items/formulario", model);
+		return new ModelAndView("/nota-entrada-item/formulario", model);
 	}
 
 	@GetMapping("/edita/{id}")
@@ -84,7 +80,7 @@ public class NotaEntradaController {
 		model.addAttribute("notaEntradaItem", new NotaEntradaItem());
 		model.addAttribute("fornecedores", fornecedorBO.findAll());
 		model.addAttribute("notaEntrada", notaEntradaBO.findById(id));
-		return new ModelAndView("/notas-entrada/formulario", model);
+		return new ModelAndView("/nota-entrada/formulario", model);
 	}
 
 	@GetMapping("/remove/{id}")
